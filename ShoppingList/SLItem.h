@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SLList : NSObject
+@interface SLItem : NSObject <NSCoding>
+
+@property NSString *uuid;
+@property NSString *name;
+@property float price;
+@property BOOL inShoppingList;
+
++ (SLItem *)createItemWithName:(NSString *)name andPrice:(float)price;
 
 @end
+

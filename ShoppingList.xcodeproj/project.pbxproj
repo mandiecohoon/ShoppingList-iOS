@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3133C2A818F21AC3007EA4D6 /* mapTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 3133C2A718F21AC3007EA4D6 /* mapTab.png */; };
 		313FFDEC18DE2ACC0014F30D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 313FFDEB18DE2ACC0014F30D /* Foundation.framework */; };
 		313FFDEE18DE2ACC0014F30D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 313FFDED18DE2ACC0014F30D /* CoreGraphics.framework */; };
 		313FFDF018DE2ACC0014F30D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 313FFDEF18DE2ACC0014F30D /* UIKit.framework */; };
@@ -19,6 +20,19 @@
 		313FFE0718DE2ACC0014F30D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 313FFDEF18DE2ACC0014F30D /* UIKit.framework */; };
 		313FFE0F18DE2ACC0014F30D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 313FFE0D18DE2ACC0014F30D /* InfoPlist.strings */; };
 		313FFE1118DE2ACC0014F30D /* ShoppingListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 313FFE1018DE2ACC0014F30D /* ShoppingListTests.m */; };
+		313FFE1C18DE2B190014F30D /* SLListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313FFE1B18DE2B190014F30D /* SLListViewController.m */; };
+		313FFE1F18DE2C420014F30D /* SLItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 313FFE1E18DE2C420014F30D /* SLItem.m */; };
+		313FFE2518DE43090014F30D /* SLAddItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313FFE2318DE43090014F30D /* SLAddItemViewController.m */; };
+		313FFE2618DE43090014F30D /* SLAddItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313FFE2418DE43090014F30D /* SLAddItemViewController.xib */; };
+		313FFE2A18DE52030014F30D /* SLEditItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313FFE2818DE52030014F30D /* SLEditItemViewController.m */; };
+		313FFE2B18DE52030014F30D /* SLEditItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313FFE2918DE52030014F30D /* SLEditItemViewController.xib */; };
+		313FFE2E18DE5DD90014F30D /* SLShoppingListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313FFE2D18DE5DD90014F30D /* SLShoppingListViewController.m */; };
+		3140B4C118F32DC80011A237 /* SLMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3140B4BF18F32DC80011A237 /* SLMapViewController.m */; };
+		3140B4C218F32DC80011A237 /* SLMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3140B4C018F32DC80011A237 /* SLMapViewController.xib */; };
+		3140B4CA18F32E780011A237 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3140B4C918F32E780011A237 /* MapKit.framework */; };
+		3140B4CC18F32E800011A237 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3140B4CB18F32E800011A237 /* CoreLocation.framework */; };
+		31D522EC18EADFD4006F1CC7 /* itemsTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 31D522EB18EADFD4006F1CC7 /* itemsTab.png */; };
+		31D522EE18EAE037006F1CC7 /* shoplistTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 31D522ED18EAE037006F1CC7 /* shoplistTab.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3133C2A718F21AC3007EA4D6 /* mapTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapTab.png; sourceTree = "<group>"; };
 		313FFDE818DE2ACC0014F30D /* ShoppingList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShoppingList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		313FFDEB18DE2ACC0014F30D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		313FFDED18DE2ACC0014F30D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -48,6 +63,25 @@
 		313FFE0C18DE2ACC0014F30D /* ShoppingListTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShoppingListTests-Info.plist"; sourceTree = "<group>"; };
 		313FFE0E18DE2ACC0014F30D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		313FFE1018DE2ACC0014F30D /* ShoppingListTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShoppingListTests.m; sourceTree = "<group>"; };
+		313FFE1A18DE2B190014F30D /* SLListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLListViewController.h; path = ../SLListViewController.h; sourceTree = "<group>"; };
+		313FFE1B18DE2B190014F30D /* SLListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLListViewController.m; path = ../SLListViewController.m; sourceTree = "<group>"; };
+		313FFE1D18DE2C420014F30D /* SLItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLItem.h; sourceTree = "<group>"; };
+		313FFE1E18DE2C420014F30D /* SLItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLItem.m; sourceTree = "<group>"; };
+		313FFE2218DE43090014F30D /* SLAddItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLAddItemViewController.h; sourceTree = "<group>"; };
+		313FFE2318DE43090014F30D /* SLAddItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLAddItemViewController.m; sourceTree = "<group>"; };
+		313FFE2418DE43090014F30D /* SLAddItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLAddItemViewController.xib; sourceTree = "<group>"; };
+		313FFE2718DE52030014F30D /* SLEditItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLEditItemViewController.h; sourceTree = "<group>"; };
+		313FFE2818DE52030014F30D /* SLEditItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLEditItemViewController.m; sourceTree = "<group>"; };
+		313FFE2918DE52030014F30D /* SLEditItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLEditItemViewController.xib; sourceTree = "<group>"; };
+		313FFE2C18DE5DD90014F30D /* SLShoppingListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLShoppingListViewController.h; sourceTree = "<group>"; };
+		313FFE2D18DE5DD90014F30D /* SLShoppingListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLShoppingListViewController.m; sourceTree = "<group>"; };
+		3140B4BE18F32DC80011A237 /* SLMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLMapViewController.h; sourceTree = "<group>"; };
+		3140B4BF18F32DC80011A237 /* SLMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLMapViewController.m; sourceTree = "<group>"; };
+		3140B4C018F32DC80011A237 /* SLMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLMapViewController.xib; sourceTree = "<group>"; };
+		3140B4C918F32E780011A237 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		3140B4CB18F32E800011A237 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		31D522EB18EADFD4006F1CC7 /* itemsTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = itemsTab.png; sourceTree = "<group>"; };
+		31D522ED18EAE037006F1CC7 /* shoplistTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shoplistTab.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +89,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3140B4CC18F32E800011A237 /* CoreLocation.framework in Frameworks */,
+				3140B4CA18F32E780011A237 /* MapKit.framework in Frameworks */,
 				313FFDEE18DE2ACC0014F30D /* CoreGraphics.framework in Frameworks */,
 				313FFDF018DE2ACC0014F30D /* UIKit.framework in Frameworks */,
 				313FFDEC18DE2ACC0014F30D /* Foundation.framework in Frameworks */,
@@ -81,6 +117,9 @@
 				313FFE0A18DE2ACC0014F30D /* ShoppingListTests */,
 				313FFDEA18DE2ACC0014F30D /* Frameworks */,
 				313FFDE918DE2ACC0014F30D /* Products */,
+				31D522EB18EADFD4006F1CC7 /* itemsTab.png */,
+				31D522ED18EAE037006F1CC7 /* shoplistTab.png */,
+				3133C2A718F21AC3007EA4D6 /* mapTab.png */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,6 +135,8 @@
 		313FFDEA18DE2ACC0014F30D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3140B4CB18F32E800011A237 /* CoreLocation.framework */,
+				3140B4C918F32E780011A237 /* MapKit.framework */,
 				313FFDEB18DE2ACC0014F30D /* Foundation.framework */,
 				313FFDED18DE2ACC0014F30D /* CoreGraphics.framework */,
 				313FFDEF18DE2ACC0014F30D /* UIKit.framework */,
@@ -109,6 +150,21 @@
 			children = (
 				313FFDFA18DE2ACC0014F30D /* SLAppDelegate.h */,
 				313FFDFB18DE2ACC0014F30D /* SLAppDelegate.m */,
+				3140B4BE18F32DC80011A237 /* SLMapViewController.h */,
+				3140B4BF18F32DC80011A237 /* SLMapViewController.m */,
+				3140B4C018F32DC80011A237 /* SLMapViewController.xib */,
+				313FFE1A18DE2B190014F30D /* SLListViewController.h */,
+				313FFE1B18DE2B190014F30D /* SLListViewController.m */,
+				313FFE2C18DE5DD90014F30D /* SLShoppingListViewController.h */,
+				313FFE2D18DE5DD90014F30D /* SLShoppingListViewController.m */,
+				313FFE2218DE43090014F30D /* SLAddItemViewController.h */,
+				313FFE2318DE43090014F30D /* SLAddItemViewController.m */,
+				313FFE2418DE43090014F30D /* SLAddItemViewController.xib */,
+				313FFE2718DE52030014F30D /* SLEditItemViewController.h */,
+				313FFE2818DE52030014F30D /* SLEditItemViewController.m */,
+				313FFE2918DE52030014F30D /* SLEditItemViewController.xib */,
+				313FFE1D18DE2C420014F30D /* SLItem.h */,
+				313FFE1E18DE2C420014F30D /* SLItem.m */,
 				313FFDFD18DE2ACC0014F30D /* Images.xcassets */,
 				313FFDF218DE2ACC0014F30D /* Supporting Files */,
 			);
@@ -221,7 +277,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				313FFDF618DE2ACC0014F30D /* InfoPlist.strings in Resources */,
+				3133C2A818F21AC3007EA4D6 /* mapTab.png in Resources */,
+				313FFE2B18DE52030014F30D /* SLEditItemViewController.xib in Resources */,
+				313FFE2618DE43090014F30D /* SLAddItemViewController.xib in Resources */,
+				3140B4C218F32DC80011A237 /* SLMapViewController.xib in Resources */,
+				31D522EC18EADFD4006F1CC7 /* itemsTab.png in Resources */,
 				313FFDFE18DE2ACC0014F30D /* Images.xcassets in Resources */,
+				31D522EE18EAE037006F1CC7 /* shoplistTab.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,8 +302,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				313FFE2A18DE52030014F30D /* SLEditItemViewController.m in Sources */,
+				313FFE1C18DE2B190014F30D /* SLListViewController.m in Sources */,
 				313FFDF818DE2ACC0014F30D /* main.m in Sources */,
+				313FFE2E18DE5DD90014F30D /* SLShoppingListViewController.m in Sources */,
+				3140B4C118F32DC80011A237 /* SLMapViewController.m in Sources */,
+				313FFE1F18DE2C420014F30D /* SLItem.m in Sources */,
 				313FFDFC18DE2ACC0014F30D /* SLAppDelegate.m in Sources */,
+				313FFE2518DE43090014F30D /* SLAddItemViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +426,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShoppingList/ShoppingList-Prefix.pch";
 				INFOPLIST_FILE = "ShoppingList/ShoppingList-Info.plist";
@@ -371,6 +440,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShoppingList/ShoppingList-Prefix.pch";
 				INFOPLIST_FILE = "ShoppingList/ShoppingList-Info.plist";
@@ -438,6 +508,7 @@
 				313FFE1618DE2ACC0014F30D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		313FFE1718DE2ACC0014F30D /* Build configuration list for PBXNativeTarget "ShoppingListTests" */ = {
 			isa = XCConfigurationList;
@@ -446,6 +517,7 @@
 				313FFE1918DE2ACC0014F30D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

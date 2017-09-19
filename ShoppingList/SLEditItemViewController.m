@@ -7,32 +7,64 @@
 //
 
 #import "SLEditItemViewController.h"
+#import "SLItem.h"
 
 @interface SLEditItemViewController ()
+
+@property SLItem *item;
+@property (weak) id<SLEditItemViewControllerDelegate> delegate;
 
 @end
 
 @implementation SLEditItemViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+
+- (id)initWithItem:(SLItem *)item andDelegate:(id<SLEditItemViewControllerDelegate>)delegate {
+    self = [super initWithNibName:@"SLEditItemViewController" bundle:nil];
+    
     if (self) {
-        // Custom initialization
+        // Set Item
+        self.item = item;
+        
+        // Set Delegate
+        self.delegate = delegate;
     }
+    
     return self;
 }
 
-- (void)viewDidLoad
-{
+
+- (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    // Create Save Button
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)];
+    
+    // Populate Text Fields
+    if (self.item) {
+        [self.nameTextField setText:[self.item name]];
+        [self.priceTextField setText:[NSString stringWithFormat:@"%f", [self.item price]]];
+    }
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+}
+
+
+- (void)save:(id)sender {
+    NSString *name = [self.nameTextField text];
+    float price = [[self.priceTextField text] floatValue];
+    
+    // Update Item
+    [self.item setName:name];
+    [self.item setPrice:price];
+    
+    // Notify Delegate
+    [self.delegate controller:self didUpdateItem:self.item];
+    
+    // Pop View Controller
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SLAddItemViewController.h"
+#import "SLEditItemViewController.h"
 
-@interface SLListViewController : UITableViewController
+@interface SLListViewController : UITableViewController <SLAddItemViewControllerDelegate, SLEditItemViewControllerDelegate>
 
 @end

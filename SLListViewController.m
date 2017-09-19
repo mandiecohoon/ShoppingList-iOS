@@ -7,113 +7,237 @@
 //
 
 #import "SLListViewController.h"
+#import "SLItem.h"
+#import "SLEditItemViewController.h"
 
 @interface SLListViewController ()
+
+@property NSMutableArray *items;
 
 @end
 
 @implementation SLListViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
+- (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
+    
     if (self) {
-        // Custom initialization
+        // Set Title & Image
+        self.title =@"Items";
+        UIImage* anImage = [UIImage imageNamed:@"itemsTab.png"];
+        UITabBarItem* theItem = [[UITabBarItem alloc] initWithTitle:@"Items" image:anImage tag:0];
+        self.tabBarItem = theItem;
+        
+        // Load Items
+        [self loadItems];
     }
+    
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    // Create Add Button
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editItems:)];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    //swipe left to shopping list
+    UISwipeGestureRecognizer *swipeRecognizerLeft = [ [ UISwipeGestureRecognizer alloc ] initWithTarget:self action:@selector( slideLeft ) ];
+    [ swipeRecognizerLeft setDirection:( UISwipeGestureRecognizerDirectionLeft ) ];
+    [ self.view addGestureRecognizer:swipeRecognizerLeft ];
+    
+    NSLog(@"Items > %@", self.items);
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.items count];
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"Cell Identifier";
     
-    // Configure the cell...
+    [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
+
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    // Fetch Item
+    SLItem *item = [self.items objectAtIndex:[indexPath row]];
+    
+    // Configure Cell
+    [cell.textLabel setText:[item name]];
+    [cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
+    
+    
+    // Show/Hide Checkmark
+    if ([item inShoppingList]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        [cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
+    }
     
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    /*
+     if ([indexPath row] == 1) {
+     return NO;
+     }
+     */
+    
     return YES;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+        // Delete Item from Items
+        [self.items removeObjectAtIndex:[indexPath row]];
+        
+        // Update Table View
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
+        
+        // Save Changes to Disk
+        [self saveItems];
+    }
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    // Fetch Item
+    SLItem *item = [self.items objectAtIndex:[indexPath row]];
+    
+    // Update Item
+    [item setInShoppingList:![item inShoppingList]];
+    
+    // Update Cell
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    
+    
+    if ([item inShoppingList]) {
+       // [cell.imageView setImage:[UIImage imageNamed:@"checkmark"]]; <-- picture in tutorial
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+       // [cell.detailTextLabel setTag:[item price]];
+    } else {
+       // [cell.imageView setImage:nil];
+        [cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
+    }
+    
+    // Save Items
+    [self saveItems];
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+    // Fetch Item
+    SLItem *item = [self.items objectAtIndex:[indexPath row]];
+    
+    // Initialize Edit Item View Controller
+    SLEditItemViewController *editItemViewController = [[SLEditItemViewController alloc] initWithItem:item andDelegate:self];
+    
+    // Push View Controller onto Navigation Stack
+    [self.navigationController pushViewController:editItemViewController animated:YES];
+}
+
+
+- (void)controller:(SLAddItemViewController *)controller didSaveItemWithName:(NSString *)name andPrice:(float)price {
+    // Create Item
+    SLItem *item = [SLItem createItemWithName:name andPrice:price];
+    
+    // Add Item to Data Source
+    [self.items addObject:item];
+    
+    // Add Row to Table View
+    NSIndexPath *newIndexPath = [NSIndexPath indexPathForItem:([self.items count] - 1) inSection:0];
+    [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+    
+    // Save Items
+    [self saveItems];
+}
+
+
+- (void)controller:(SLEditItemViewController *)controller didUpdateItem:(SLItem *)item {
+    // Fetch Item
+    for (int i = 0; i < [self.items count]; i++) {
+        SLItem *anItem = [self.items objectAtIndex:i];
+        
+        if ([[anItem uuid] isEqualToString:[item uuid]]) {
+            // Update Table View Row
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }
+    }
+    
+    // Save Items
+    [self saveItems];
+}
+
+
+- (void)addItem:(id)sender {
+    // Initialize Add Item View Controller
+    SLAddItemViewController *addItemViewController = [[SLAddItemViewController alloc] initWithNibName:@"SLAddItemViewController" bundle:nil];
+    
+    // Set Delegate
+    [addItemViewController setDelegate:self];
+    
+    // Present View Controller
+    [self presentViewController:addItemViewController animated:YES completion:nil];
+}
+
+- (void)editItems:(id)sender {
+    [self.tableView setEditing:![self.tableView isEditing] animated:YES];
+}
+
+
+- (void)loadItems {
+    NSString *filePath = [self pathForItems];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        self.items = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+    } else {
+        self.items = [NSMutableArray array];
+    }
+}
+
+- (void)saveItems {
+    NSString *filePath = [self pathForItems];
+    [NSKeyedArchiver archiveRootObject:self.items toFile:filePath];
+    
+    // Post Notification
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SLShoppingListDidChangeNotification" object:self];
+}
+
+- (NSString *)pathForItems {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documents = [paths lastObject];
+    
+    return [documents stringByAppendingPathComponent:@"items.plist"];
+}
+
+- (void) slideLeft //swipe to controller to the left to shopping list
 {
+    //animation transition
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.5;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromRight;
+    [self.view.window.layer addAnimation:transition forKey:nil];
+    
+   // [self presentModalViewController:viewController animated:yes];
+    
+    self.tabBarController.selectedIndex++;
 }
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

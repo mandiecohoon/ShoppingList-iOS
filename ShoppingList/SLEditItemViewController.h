@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@class SLItem;
+@protocol SLEditItemViewControllerDelegate;
+
 @interface SLEditItemViewController : UIViewController
 
+@property IBOutlet UITextField *nameTextField;
+@property IBOutlet UITextField *priceTextField;
+
+
+- (id)initWithItem:(SLItem *)item andDelegate:(id<SLEditItemViewControllerDelegate>)delegate;
+
+@end
+
+@protocol SLEditItemViewControllerDelegate <NSObject>
+- (void)controller:(SLEditItemViewController *)controller didUpdateItem:(SLItem *)item;
 @end

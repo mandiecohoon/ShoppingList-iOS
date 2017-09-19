@@ -14,25 +14,41 @@
 
 @implementation SLAddItemViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    
     if (self) {
-        // Custom initialization
+        
     }
+    
     return self;
 }
 
-- (void)viewDidLoad
-{
+
+- (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+}
+
+
+- (IBAction)cancel:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)save:(id)sender {
+    // Extract User Input
+    NSString *name = [self.nameTextField text];
+    float price = [[self.priceTextField text] floatValue];
+    
+    // Notify Delegate
+    [self.delegate controller:self didSaveItemWithName:name andPrice:price];
+    
+    // Dismiss View Controller
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
